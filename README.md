@@ -6,8 +6,11 @@
 ***Esta con el Stack de MERN***
 
 > Mongo: para la base de datos
+
 > React: libreria de front-end
+
 > Express: marco de aplicaciones para back-end
+
 > Node: entorno de ejecucion para el back-end
 
 ### Cuando se clona todo el repositorio tiene que configurar el back-end y el front-end con los siguientes pasos
