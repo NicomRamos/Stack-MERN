@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
-import {Url} from "./ApiUrl"
+import {Url} from "../components/ApiUrl"
 import axios from "axios"
 import {Button, Jumbotron, Container, Modal, Form, Alert } from 'react-bootstrap';
-import Car from './Car.js';
+import Car from '../components/Car.js';
+import { connect } from "react-redux";
+import carActions from '../redux/actions/carActions'
 
 const Cars=(props) =>{
     const [cars, setCars] = useState([])
     const [show, setShow] = useState(false)
     const [car, setCar] = useState({ model:"",  patent: "", color:"" , clientId:"" })
     const [errors, setErrors] = useState("")
-
 
 
     const handleClose = () => setShow(false)
@@ -90,8 +91,15 @@ const Cars=(props) =>{
             }
         </>
         )
-            
-  
 }
 
-export default Cars
+const mapStateToProps = state => {
+  return {
+    car: state.carReducer.car
+  }
+}
+const mapDispatchToProps = {
+  getCar: carActions.getCar
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cars)

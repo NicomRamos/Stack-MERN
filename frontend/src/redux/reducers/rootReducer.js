@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import { clientReducer } from "./clientReducer";
+import  {clientReducer}  from "./clientReducer";
+import  {carReducer}  from './carReducer'
 
 const rootReducer = combineReducers({
-    clientReducer
+    clientReducer,
+    carReducer
 })
 
 export default rootReducer

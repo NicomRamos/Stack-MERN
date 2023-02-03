@@ -1,21 +1,28 @@
-import { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
-import clientActions from '../redux/actions/clientActions'
-import {Button } from 'react-bootstrap';
-import axios from "axios"
-import {Url} from "./ApiUrl"
+import { Button, Table, Jumbotron, Container } from 'react-bootstrap';
 
-const Client=({client, props}) =>{
-    const [clients, setClients] = useState({})
-
-    useEffect( ()=> {
-        axios.get(`${Url}/client`)
-        .then(data => setClients(data.data))
-
-    }, [client])
+const Client=(props) =>{
     return (
     <>
-        {clients.success  && clients.response.map((client, index) => {
+    {props.clients.email ? 
+      <Jumbotron fluid>
+          <Container>
+              <h1>No tiene clientes cargados</h1>
+          </Container>
+      </Jumbotron> 
+      : 
+      <Table striped bordered hover>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Ver auto</th>
+        </tr>
+        </thead>
+        <tbody>
+        {props.clients.map((client, index) => {
             return( 
                 <tr key={index}>
                     <td>{index}</td>
@@ -28,6 +35,9 @@ const Client=({client, props}) =>{
                 </tr>
                 )
         })}
+        </tbody>
+      </Table>
+    }
     </>
   );
 }
@@ -36,7 +46,4 @@ const mapStateToProps = state => {
     clients: state.clientReducer.clients
   }
 }
-const mapDispatchToProps = {
-  getClient: clientActions.allClient
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Client)
+export default connect(mapStateToProps)(Client)

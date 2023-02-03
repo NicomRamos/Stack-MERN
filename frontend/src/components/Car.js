@@ -1,11 +1,7 @@
-
-import { connect } from 'react-redux'
-import clientActions from '../redux/actions/clientActions'
 import {Button, Accordion, Card} from 'react-bootstrap';
 import Repairs from './Repairs';
 
-const Car=({car, index}, props) =>{
-  console.log(car)
+const Car = ({car, index}) =>{
     return (
     <>  
         <Accordion defaultActiveKey="1">
@@ -19,12 +15,4 @@ const Car=({car, index}, props) =>{
     </>
   );
 }
-const mapStateToProps = state => {
-  return {
-    clients: state.clientReducer.clients
-  }
-}
-const mapDispatchToProps = {
-  getClient: clientActions.allClient
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Car)
+export default Car
