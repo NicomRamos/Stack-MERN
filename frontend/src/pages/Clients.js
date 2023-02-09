@@ -1,10 +1,10 @@
 import Client from '../components/Client.js';
-import  ModalAdd  from '../components/ModalAdd';
+import ModalAdd from '../components/ModalAdd';
 
 const Clients=() =>{
     return (
       <>
-        <ModalAdd/>
+        <ModalAdd id={1}/>
         <Client/>
       </>
     )

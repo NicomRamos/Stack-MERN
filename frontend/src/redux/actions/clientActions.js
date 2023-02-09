@@ -2,7 +2,7 @@ import axios from "axios"
 import {Url} from "../../components/ApiUrl"
 
 const clientActions = {
-    newClient: (client) => {
+    addClient: (client) => {
         return async (dispatch) => {
             const response = await axios.post(`${Url}/client`, client)
             if (!response.data.success) {

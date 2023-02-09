@@ -2,8 +2,8 @@ const Car = require('../models/Car')
 
 const carController = {
     addCar : async ( req, res) => {
-        const { model, patent, color, clientId } = req.body
-        console.log(req.body)
+      const clientId  = req.params.id
+        const { model, patent, color } = req.body
         const carAdd = new Car({ model, patent, color, clientId })
         carAdd.save()
         .then(async carAdd=> {

@@ -6,8 +6,7 @@ import { connect } from 'react-redux'
 import clientActions from './redux/actions/clientActions'
 
 function App(props) {
-  props.getClient()
-  if (props.clients.email) {
+  if (props.clients.email || props.clients.length === 0) {
     props.getClient()
   }
   return (
@@ -20,13 +19,13 @@ function App(props) {
     </BrowserRouter>
   );
 }
-const mapDispatchToProps = {
-  getClient: clientActions.allClient
-}
 const mapStateToProps = state => {
   return {
     clients: state.clientReducer.clients
   }
+}
+const mapDispatchToProps = {
+  getClient: clientActions.allClient
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
 

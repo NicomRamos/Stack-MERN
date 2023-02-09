@@ -10,11 +10,11 @@ router.route('/client')
 .delete(clientController.deleteClient)
 
 router.route('/cars')
-.post(carController.addCar)
 .delete(carController.deleteCar)
 
 router.route('/cars/:id')
 .get(carController.allCars)
+.post(carController.addCar)
 
 router.route('/repair')
 .post(repairController.addRepair)

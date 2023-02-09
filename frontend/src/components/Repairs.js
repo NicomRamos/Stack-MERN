@@ -1,56 +1,13 @@
-import { useEffect, useState } from 'react';
-import {Button, Accordion, Card, Jumbotron, Container, Image, Modal, Form, Alert} from 'react-bootstrap';
-import axios from "axios"
-import {Url} from "./ApiUrl"
+import { Accordion, Card, Jumbotron, Container, Image } from 'react-bootstrap';
+import ModalAdd from './ModalAdd';
 
-const Repairs=({car, index},props) =>{
-    const [id, setId] = useState("")
-    const [repairs, setRepairs] = useState([])
-    const [show, setShow] = useState(false)
-    const [repair, setRepair] = useState({ id: "",  description: "" })
-    const [errors, setErrors] = useState("")
-    
-    
-
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
-    
-    useEffect ( () => {
-        setRepairs(car.repair)
-        setId(car._id)  
-        setRepair({...repair, id: id})
-    }, [repairs])
-
-    const seeInput = e => {
-      const value = e.target.value
-      const campo = e.target.name
-      setRepair({
-          ...repair,
-          [campo]: value
-      })
-    }
-    const addClient = async () => {
-      setErrors([])
-      console.log(repairs)
-      if (repair.id !== "" &&  repair.description !== "") {
-        axios.post(`${Url}/repair`, repair)
-        .then(res => {
-              setShow(false)
-              setRepair({...repair,  description: "" })
-        })
-        .catch(error => {
-            setErrors(error)
-            console.log(error)
-        })
-      } else {
-        setErrors("Complete todos los campos")
-      }
-    }
+const Repairs=(props) =>{
+    const { car, index } = props
     return (
     <>
-    <Button variant="outline-dark" onClick={handleShow}>Agregar reparacion</Button>
-    {repairs.length !== 0 ? 
-           repairs.map((repair) => {
+    <ModalAdd id={3} _id={car._id}/>
+    {car.repair.length !== 0 ? 
+           car.repair.map((repair) => {
             var d = new Date(repair.date);
             var date = d.toUTCString();
                return(
@@ -80,29 +37,6 @@ const Repairs=({car, index},props) =>{
             </Card.Body>
         </Accordion.Collapse>
     }
-    
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header>
-            <Modal.Title>Agregar reparacion</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form className="m-1 justify-content-center">
-              <Form.Group className="d-flex">
-                <Form.Control type="textarea" name="description" onChange={seeInput} required placeholder="Escribir reparacion  " />
-              </Form.Group>
-            </Form></Modal.Body>
-            <div>{errors && 
-              <Alert> {errors} </Alert>}
-            </div>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Cerrar
-            </Button>
-            <Button variant="primary" onClick={addClient}>
-              Agregar reparacion
-            </Button>
-          </Modal.Footer>
-        </Modal>
     </>
   );
 }
