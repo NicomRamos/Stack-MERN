@@ -1,5 +1,6 @@
 const initialState = {
-    cars:[]
+    cars:[],
+    car:{}
 }
 
 export function carReducer(state = initialState, action) { 
@@ -7,9 +8,14 @@ export function carReducer(state = initialState, action) {
         case 'ADD_CAR':
             return {
                 ...state,
-                car: action.payload.response
+                cars: action.payload.response
             }
         case 'CHARGE_CAR':
+            return {
+                ...state,
+                cars: action.payload.response
+            }
+        case 'DELETE_CAR':
             return {
                 ...state,
                 cars: action.payload.response

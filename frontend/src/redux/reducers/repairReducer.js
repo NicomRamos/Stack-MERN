@@ -1,5 +1,5 @@
 const initialState = {
-    repair:[]
+    car:{}
 }
 
 export function repairReducer(state = initialState, action) { 
@@ -7,8 +7,13 @@ export function repairReducer(state = initialState, action) {
         case 'ADD_REPAIR':
             return {
                 ...state,
-                clients: action.payload.response
+                car: action.payload.response
             }
+        case 'DELETE_REPAIR':
+                return {
+                ...state,
+                car: action.payload.response
+                }
         default:
             return state
     }

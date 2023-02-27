@@ -25,8 +25,8 @@ const carController = {
         })
       },
     deleteCar: (req, res) => {
-        const { id } = req.body
-        Car.findByIdAndDelete({"_id": id})
+      const { id } = req.params
+        Car.findByIdAndDelete({_id: id})
         .then(response => {
           return res.json({success: true, response})
         })

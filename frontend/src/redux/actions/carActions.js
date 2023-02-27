@@ -1,5 +1,5 @@
 import axios from "axios"
-import { Url } from "../../components/ApiUrl"
+import { Url } from "./ApiUrl"
 
 const carActions = {
     addCar:(car, id) => {
@@ -12,6 +12,12 @@ const carActions = {
         return async (dispatch) => {
             const response = await axios.get(`${Url}/cars/${id}`)
             dispatch({type:'CHARGE_CAR', payload: response.data})
+        }
+    },
+    delCar: ( _id ) => {
+        return async (dispatch) => {
+            const response  = await axios.delete(`${Url}/cars/${_id}`)
+            dispatch({type: 'DELETE_CAR', payload: response.data})
         }
     }
 }

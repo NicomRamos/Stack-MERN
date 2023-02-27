@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { Button, Table, Jumbotron, Container } from 'react-bootstrap';
+import BtnDel from './BtnDel';
 
 const Client=(props) =>{
     return (
@@ -30,8 +31,9 @@ const Client=(props) =>{
                     <td>{client.lastname}</td>
                     <td>{client.email}</td>
                     <Button href={"/cars/"+ client._id} className="linkClient">
-                    <td>Ver autos</td>
+                    Ver autos
                     </Button>
+                    <BtnDel id={1} _id={client._id}/>
                 </tr>
                 )
         })}

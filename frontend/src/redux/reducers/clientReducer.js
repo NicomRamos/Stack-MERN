@@ -14,6 +14,11 @@ export function clientReducer(state = initialState, action) {
                 ...state,
                 clients: action.payload.response
             }
+        case 'DELETE_CLIENT': 
+            return {
+                ...state,
+                clients: action.payload.response
+            }
         default:
             return state
     }

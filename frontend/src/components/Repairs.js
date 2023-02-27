@@ -1,4 +1,5 @@
 import { Accordion, Card, Jumbotron, Container, Image } from 'react-bootstrap';
+import BtnDel from './BtnDel';
 import ModalAdd from './ModalAdd';
 
 const Repairs=(props) =>{
@@ -13,6 +14,7 @@ const Repairs=(props) =>{
                return(
                 <Accordion.Collapse eventKey={index} key={car.repair._id}>
                     <Card.Body>
+                        <BtnDel _id={car._id} id={repair._id}/>
                         <div className="d-flex justify-content-between" > 
                             <h1>{date}</h1>
                         </div>   

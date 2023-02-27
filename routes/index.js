@@ -7,14 +7,14 @@ const repairController = require('../controllers/repairController')
 router.route('/client')
 .get(clientController.allclient)
 .post(clientController.addClient)
-.delete(clientController.deleteClient)
 
-router.route('/cars')
-.delete(carController.deleteCar)
+router.route('/client/:id')
+.delete(clientController.deleteClient)
 
 router.route('/cars/:id')
 .get(carController.allCars)
 .post(carController.addCar)
+.delete(carController.deleteCar)
 
 router.route('/repair')
 .post(repairController.addRepair)

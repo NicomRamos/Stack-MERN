@@ -29,7 +29,7 @@ const clientController = {
         })
     },
     deleteClient:(req, res) => {
-        const { id } = req.body
+        const { id } = req.params
         Client.findOneAndDelete({ _id: id })
         .then(response => { 
             res.json({ success: true, response })

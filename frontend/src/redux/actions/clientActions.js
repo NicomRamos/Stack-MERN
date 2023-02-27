@@ -1,5 +1,5 @@
 import axios from "axios"
-import {Url} from "../../components/ApiUrl"
+import {Url} from "./ApiUrl"
 
 const clientActions = {
     addClient: (client) => {
@@ -17,6 +17,12 @@ const clientActions = {
             dispatch({type: 'CHARGE_CLIENTS', payload: response.data})
         }
     },
+    delClient: ( _id ) => {
+        return async (dispatch) => {
+            const response  = await axios.delete(`${Url}/client/${_id}`)
+            dispatch({type: 'DELETE_CLIENT', payload: response.data})
+        }
+    }
 }
 
 export default clientActions
