@@ -14,15 +14,15 @@ const Repairs=(props) =>{
                return(
                 <Accordion.Collapse eventKey={index} key={car.repair._id}>
                     <Card.Body>
-                        <BtnDel _id={car._id} id={repair._id}/>
                         <div className="d-flex justify-content-between" > 
                             <h1>{date}</h1>
                         </div>   
                         <div className="d-flex justify-content-around">
                             <Image src="https://via.placeholder.com/400x400" fluid />
-                            <h1>{repair.description}</h1>
-                        </div>
-                        <div>
+                            <div>
+                                <h1>{repair.description}</h1>
+                                <BtnDel _id={car._id} id={repair._id}/>
+                            </div>
                         </div>
                     </Card.Body>
                 </Accordion.Collapse>

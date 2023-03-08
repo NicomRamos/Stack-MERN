@@ -2,28 +2,31 @@ import {Button, Accordion, Card, Jumbotron, Container} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import carActions from '../redux/actions/carActions';
 import BtnDel from './BtnDel';
-import CardCar from './CardCar';
+// import CardCar from './CardCar';
 import Repairs from './Repairs';
 
 const Car = (props) =>{
     const { cars } = props
+    console.log(props)
     
     return cars.length && cars.length !== 0 ? cars.map((car, index) => {
           return(
             <>
             <div className='d-flex justify-content-center'>
-              <BtnDel _id={car._id} id={2}/>
             </div>
             <div className='d-flex justify-content-center'>
               {/* <CardCar car={car}/> */}
-              {/* <Accordion defaultActiveKey="1" key={index}>
+              <Accordion defaultActiveKey="1" key={index}>
+                  <Accordion.Toggle as={Button} variant="h3" eventKey={index + 1}>
                   <Card>
-                      <Accordion.Toggle as={Button} variant="h3" eventKey={index + 1}>
-                          <Card.Header>{car.model} || {car.patent} || {car.color}</Card.Header>
-                      </Accordion.Toggle>
-                      <Repairs car={car} key={index} index={index + 1}/>
+                    <Card.Header>{car.model} || {car.patent} || {car.color}</Card.Header>
                   </Card>
-              </Accordion> */}
+                    <div className='d-flex justify-content-center'>
+                      <BtnDel _id={car._id} id={2}/>
+                    </div>
+                  </Accordion.Toggle>
+                  <Repairs car={car} key={index} index={index + 1}/>
+              </Accordion>
             </div>
             </>
           )
