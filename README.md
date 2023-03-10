@@ -1,4 +1,4 @@
-# Stack-MERN
+# FullStack
 
 ## Aplicacion para el cliente "El Gran Calibre"
 
