@@ -3,9 +3,11 @@ const router = express.Router()
 const clientController = require('../controllers/clientController')
 const carController = require('../controllers/carController')
 const repairController = require('../controllers/repairController')
+const passport = require("passport")
 const userController = require('../controllers/userController')
 const validator = require("../controllers/validator")
 
+require("../config/passport");
 
 router.route('/client')
 .get(clientController.allclient)
@@ -29,5 +31,8 @@ router.route("/login")
 
 router.route("/register")
 .post(validator.register, userController.register)
+
+router.route("/ls")
+.post(passport.authenticate("jwt", { session: false }), userController.logLS)
 
 module.exports = router

@@ -18,6 +18,8 @@
 npm install
 ```
 
+> Configurar variable de entorno para que funcione MongoDB y Secret Key para passport
+
 ### instalar dependencia de Node Package Manager
 ```bash
 npm start

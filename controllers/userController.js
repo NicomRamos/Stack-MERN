@@ -35,14 +35,17 @@ const userController = {
     if ( !passMatchs ) {
       return res.status(400).json({message: 'Usuario o contraseña es invalida.'})
     }
-
+    
     try {
-      var token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {});
+      var token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
       res.status(201).json({email: userExists.email, token })
     } catch (err){
       res.status(400).json({message: err.message})
     }
-  }
+  },
+  logLS: (req, res) => {
+    res.status(200).json({ token: req.body.token, email: req.user.email })
+  },
 };
 
 module.exports = userController;
