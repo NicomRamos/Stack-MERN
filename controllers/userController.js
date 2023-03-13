@@ -17,7 +17,7 @@ const userController = {
 
     try {
       var token = jwt.sign({ ...userSave }, process.env.SECRET_KEY, {})
-      res.status(201).json({message: 'El usuario registrado', token })
+      res.status(201).json({message: 'Usuario registrado', token })
     } catch (err){
       res.status(400).json({message: err.message})
     }

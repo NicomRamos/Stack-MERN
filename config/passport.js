@@ -3,7 +3,7 @@ const jwtStrategy = require("passport-jwt").Strategy;
 const ExtractJwt = require("passport-jwt").ExtractJwt;
 const User = require("../models/User");
 
-module.exports = passport.use(
+passport.use(
   new jwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,4 +23,21 @@ module.exports = passport.use(
         });
     }
   )
-);
+)
+
+function authenticateUser(req, res, next) {
+  passport.authenticate('jwt', { session: false }, (err, user) => {
+    if (err) {
+      return next(err)
+    }
+
+    if (!user) {
+      return res.status(401).json({ message: 'No estás autorizado para hacer esta accion' })
+    }
+
+    req.user = user
+    next()
+  })(req, res, next)
+}
+
+module.exports =  authenticateUser 
