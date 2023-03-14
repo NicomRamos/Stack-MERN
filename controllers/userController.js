@@ -14,13 +14,13 @@ const userController = {
     const passHashed = bcryptjs.hashSync(password, 10)
     var newUser = new User({firstName, lastName, email, admin ,password: passHashed})
     var userSave = await newUser.save()
-
-    try {
+    .then(response => {
       var token = jwt.sign({ ...userSave }, process.env.SECRET_KEY, {})
-      res.status(201).json({message: 'Usuario registrado', token })
-    } catch (err){
+      res.status(201).json({message: 'Usuario registrado', token, email: response.email })
+    })
+    .catch(err => {
       res.status(400).json({message: err.message})
-    }
+    })
   },
 
   logIn: async (req, res) => {
@@ -35,7 +35,6 @@ const userController = {
     if ( !passMatchs ) {
       return res.status(400).json({message: 'Usuario o contraseña es invalida.'})
     }
-    
     try {
       var token = jwt.sign({ ...userExists }, process.env.SECRET_KEY, {})
       res.status(201).json({email: userExists.email, token })

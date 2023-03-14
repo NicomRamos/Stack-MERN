@@ -6,8 +6,12 @@ const repairController = {
       Car.findOneAndUpdate({ _id: id},
         { $addToSet: { repair: { description, ready: false }}},
         { new:true })
-      .then(response => res.json({success: true, response }))
-      .catch(error => res.json({success: false, error }))
+      .then(response => 
+        res.status(201).json({ response })
+      )
+      .catch(error => 
+        res.status(400).json({ error })
+      )
     },
     changeRepairs: async ( req, res ) => {
       const { id, description, ready } = req.body
@@ -15,10 +19,10 @@ const repairController = {
       await Car.findOneAndUpdate({ _id: id},
         change)
       .then(response => 
-        res.json({success: true, response })
+        res.status(201).json({ response })
       )
       .catch(error => 
-        res.json({success: false, error })
+        res.status(400).json({ error })
       )
     },
     deleteRepair: (req, res) => {
@@ -28,14 +32,10 @@ const repairController = {
             {$pull: { repair: { _id: id }}},
             {new: true})
         .then(response => {
-          res.json({success: true, response})}
+          res.status(201).json({ response })}
         )
         .catch(errores => 
-          res.json({
-            success: false,
-            errores,
-            mensaje:'No se puede borrar la reparacion en este momento. Intente mas tarde'
-          })
+          res.status(400).json({ errores })
         )
     }
 }

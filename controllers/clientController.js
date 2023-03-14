@@ -29,9 +29,9 @@ const clientController = {
             res.status(400).json({ error })
         })
     },
-    deleteClient:(req, res) => {
+    deleteClient: async (req, res) => {
         const { id } = req.params
-        Client.findOneAndDelete({ _id: id })
+        await Client.findOneAndDelete({ _id: id })
         .then(response => { 
             res.status(201).json({ response })
         })

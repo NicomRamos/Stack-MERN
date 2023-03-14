@@ -8,34 +8,30 @@ const carController = {
         carAdd.save()
         .then(async carAdd=> {
             const car = await carAdd.populate('clientId').execPopulate()
-            return res.json({success: true, respuesta: car})
+            return res.status(201).json({ car })
         })
         .catch(error => {
-          return res.json({success: false, error})
+          return res.status(400).json({ error })
         })
     },
     allCars: (req, res) => {
         const {id} = req.params
         Car.find({ clientId: id }).exec()
         .then(response => {
-          return res.json({success: true, response})
+          return res.status(201).json({ response })
         })
         .catch(error => {
-          return res.json({success: false, error})
+          return res.status(400).json({ error })
         })
       },
     deleteCar: (req, res) => {
       const { id } = req.params
         Car.findByIdAndDelete({_id: id})
         .then(response => {
-          return res.json({success: true, response})
+          return res.status(201).json({ response })
         })
         .catch(errores => {
-          return res.json({
-            success: false,
-            errores,
-            mensaje:'No se puede borrar la reparacion en este momento. Intente mas tarde'
-          })
+          return res.status(400).json({ errores })
         })
     },
 }
