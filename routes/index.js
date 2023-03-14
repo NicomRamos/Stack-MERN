@@ -17,13 +17,15 @@ router.route('/client/:id')
 
 router.route('/cars/:id')
 .get(carController.allCars)
-.post(authenticateUser, carController.addCar)
-.delete(authenticateUser, carController.deleteCar)
+.post(carController.addCar)
+.delete(carController.deleteCar)
 
 router.route('/repair')
-.post(authenticateUser, repairController.addRepair)
+.post(repairController.addRepair)
 .put(authenticateUser, repairController.changeRepairs)
-.delete(authenticateUser, repairController.deleteRepair)
+
+router.route('/repair/:_id/:id')
+.delete(repairController.deleteRepair)
 
 router.route("/login")
 .post(userController.logIn)

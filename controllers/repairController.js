@@ -22,13 +22,13 @@ const repairController = {
       )
     },
     deleteRepair: (req, res) => {
-        const {id, idRepair } = req.body
+        const { _id, id } = req.params
         Car.findOneAndUpdate(
-            {_id: id},
-            {$pull: { repair: { _id: idRepair }}},
+            {_id: _id},
+            {$pull: { repair: { _id: id }}},
             {new: true})
-        .then(response => 
-          res.json({success: true, response})
+        .then(response => {
+          res.json({success: true, response})}
         )
         .catch(errores => 
           res.json({

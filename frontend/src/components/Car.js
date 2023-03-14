@@ -21,10 +21,8 @@ const Car = (props) =>{
                   <Card>
                     <Card.Header>{car.model} || {car.patent} || {car.color}</Card.Header>
                   </Card>
-                    <div className='d-flex justify-content-center'>
-                      <BtnDel _id={car._id} id={2}/>
-                    </div>
                   </Accordion.Toggle>
+                  <BtnDel _id={car._id} id={2}/>
                   <Repairs car={car} key={index} index={index + 1}/>
               </Accordion>
             </div>

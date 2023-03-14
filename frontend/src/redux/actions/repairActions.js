@@ -13,17 +13,8 @@ const repairActions = {
         }
     },
     delRepair: ( id, idRepair ) => {
-        const repairJSON = {
-            id,
-            idRepair
-        }
         return async (dispatch) => {
-            // const response  = await axios.delete(`${Url}/repair`, repairJSON)
-            const response  = await axios({
-                url: `${Url}/repair`,
-                method: 'delete',
-                data: repairJSON
-              });
+            const response  = await axios.delete(`${Url}/repair/${id}/${idRepair}`)
             dispatch({type: 'DELETE_REPAIR', payload: response.data})
         }
     }
