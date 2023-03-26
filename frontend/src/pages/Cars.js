@@ -10,8 +10,10 @@ const Cars=(props) =>{
 
   return (
       <>
+      <div className='mb-3'>
         <ModalAdd id={2} _id={id}/>
-        <Car _id={id}/>
+      </div>
+      <Car _id={id}/>
       </>
       )
 }
