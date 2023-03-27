@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon ./server.js",
-    "test": "cross-env NODE_ENV=test ava",
+    "test": "cross-env NODE_ENV=test jest",
     "start": "cross-env NODE_ENV=production nodemon ./server.js"
   },
   "repository": {
@@ -31,9 +31,6 @@
     "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
-    "ava": "^5.2.0",
-    "got": "^12.6.0",
-    "supertest": "^6.3.3",
-    "test-listen": "^1.1.0"
+    "jest": "^29.5.0"
   }
 }
