@@ -5,7 +5,7 @@ const clientController = {
         const { firstname, lastname, email } = req.body
         const userId = req.user._id
         const  clientExist = await Client.findOne({ email: email })
-        if ( !firstname || !email || !email ) {
+        if ( !firstname || !lastname || !email ) {
             return res.status(400).json({ message: 'Por favor ingresa todos los campos requeridos.' })
         }
         if ( clientExist ) {
